@@ -1,10 +1,11 @@
 package com.bridgelabz.ocb
 
-MemberService memberService
+class MemberController {
+    MemberService memberService
 
     def index() {
         def response = memberService.list(params)
-        [member: response.list, total:response.count]
+        [memberList: response.list, total:response.count]
     }
 
     def details(Integer id) {
@@ -15,11 +16,9 @@ MemberService memberService
             [member: response]
         }
     }
-
     def create() {
         [member: flash.redirectParams]
     }
-
     def save() {
         def response = memberService.save(params)
         if (!response.isSuccess) {
@@ -29,8 +28,6 @@ MemberService memberService
             redirect(controller: "member", action: "index")
         }
     }
-
-
     def edit(Integer id) {
         if (flash.redirectParams) {
             [member: flash.redirectParams]
@@ -43,8 +40,6 @@ MemberService memberService
             }
         }
     }
-
-
     def update() {
         def response = memberService.getById(params.id)
         if (!response){
@@ -59,7 +54,6 @@ MemberService memberService
             }
         }
     }
-
     def delete(Integer id) {
         def response = memberService.getById(id)
         if (!response){
@@ -69,3 +63,4 @@ MemberService memberService
             redirect(controller: "member", action: "index")
         }
     }
+}

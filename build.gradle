@@ -78,6 +78,7 @@ dependencies {
 }
 
 bootRun {
+     main = 'online.contact.book.grails.Application'
     ignoreExitValue true
     jvmArgs(
         '-Dspring.output.ansi.enabled=always', 
